@@ -1,81 +1,48 @@
-let questions = [
-    {
-        question: "Te-ai apucat de ideea de proiect?",
-        options: {
-            a: "Da, am deja o schiță!",
-            b: "Nu încă, dar mă gândesc la ceva",
-            c: "Nu prea știu ce să fac..."
-        },
-        correctAnswer: "a",
-        correctResponse: "Excelent! Abia aștept să văd ce iese!",
-        incorrectResponse: "Nu-i nimic! Discutăm idei împreună"
-    },
-    {
-        question: "Cum merge echipa ta la proiect?",
-        options: {
-            a: "Ne organizăm bine!",
-            b: "Mai greu cu sincronizarea...",
-            c: "Sunt singur"
-        },
-        correctAnswer: "a",
-        correctResponse: "Foarte tare! Munca în echipă e cheia succesului!",
-        incorrectResponse: "O să găsim soluții împreună, nu-ți face griji"
-    }
-];
+document.addEventListener("DOMContentLoaded", () => {
+    const chatBox = document.getElementById("chat-box");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
 
-let currentQuestionIndex = 0;
-let chatContainer = document.getElementById("chat-container");
-let chatForm = document.getElementById("chat-form");
-let userInput = document.getElementById("user-input");
+    if (!chatBox || !userInput || !sendBtn) return;
 
-displayQuestion();
-
-function displayQuestion() {
-    let currentQuestion = questions[currentQuestionIndex];
-    let optionsHTML = Object.keys(currentQuestion.options)
-        .map(key => `<strong>${key}</strong>. ${currentQuestion.options[key]}`)
-        .join("<br>");
-
-    let botResponse = document.createElement("div");
-    botResponse.classList.add("message", "bot-msg");
-    botResponse.innerHTML = `<strong>Bot:</strong> ${currentQuestion.question}<br><br>${optionsHTML}`;
-    
-    chatContainer.appendChild(botResponse);
-    scrollChatContainerToBottom();
-}
-
-function scrollChatContainerToBottom() {
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-}
-
-chatForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-    let userResponse = userInput.value.toLowerCase().trim();
-    if (userResponse === "") return;
-
-    let userMessage = document.createElement("div");
-    userMessage.classList.add("message", "user-msg");
-    userMessage.innerHTML = `<strong>You:</strong> ${userResponse}`;
-    chatContainer.appendChild(userMessage);
-
-    let currentQuestion = questions[currentQuestionIndex];
-    let botResponse = document.createElement("div");
-    botResponse.classList.add("message", "bot-msg");
-    botResponse.innerHTML = `<strong>Bot:</strong> `;
-
-    if (userResponse === currentQuestion.correctAnswer) {
-        botResponse.innerHTML += currentQuestion.correctResponse;
-    } else {
-        botResponse.innerHTML += currentQuestion.incorrectResponse;
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender);
+        messageDiv.textContent = text;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    chatContainer.appendChild(botResponse);
+    function handleSend() {
+        const text = userInput.value.trim();
+        if (text === "") return;
 
-    currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
-    userInput.value = "";
+        addMessage(text, "user");
+        userInput.value = "";
 
-    setTimeout(() => {
-        displayQuestion();
-        scrollChatContainerToBottom();
-    }, 800);
+        setTimeout(() => {
+            let response = "Nu am înțeles întrebarea. Poți încerca să întrebi despre facultăți, galerie sau cursuri.";
+            const lowerText = text.toLowerCase();
+
+            if (lowerText.includes("salut") || lowerText.includes("buna") || lowerText.includes("hei")) {
+                response = "Salut! Cu ce te pot ajuta astăzi?";
+            } else if (lowerText.includes("facultate") || lowerText.includes("facultati")) {
+                response = "Găsești detalii despre facultăți în secțiunea 'Facultăți' din meniu!";
+            } else if (lowerText.includes("galerie") || lowerText.includes("poze")) {
+                response = "Poți vedea proiectele noastre în secțiunea 'Galerie'.";
+            } else if (lowerText.includes("ce faci")) {
+                response = "Sunt un asistent virtual pregătit să te ajute cu informații despre Comunitatea TW!";
+            }
+
+            addMessage(response, "bot");
+        }, 600);
+    }
+
+    sendBtn.addEventListener("click", handleSend);
+
+    userInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            handleSend();
+        }
+    });
 });

@@ -2,115 +2,163 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f0f2f5;
-    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f8fafc;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
 header {
-    background-color: #1a365d;
-    color: #ffffff;
-    padding: 20px 0;
-    text-align: center;
-    width: 100%;
+    background-color: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #334155;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 1.4rem;
+    color: #38bdf8;
+    font-weight: 600;
 }
 
-header nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-header nav a {
-    color: #e5a93c;
+nav a {
+    color: #94a3b8;
     text-decoration: none;
-    font-weight: bold;
+    margin-left: 20px;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
 }
 
-header nav a:hover {
-    color: #ffffff;
+nav a:hover, nav a.active {
+    color: #38bdf8;
+    font-weight: 600;
 }
 
-main {
+.chat-wrapper {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
-.chat-wrapper {
+.chat-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    max-width: 500px;
+    max-width: 650px;
+    height: 550px;
 }
 
-.chat-container {
-    width: 100%;
-    height: 380px;
-    padding: 15px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
+.chat-card h2 {
+    font-size: 1.3rem;
+    color: #f8fafc;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.chat-box {
+    flex: 1;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 16px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    margin-bottom: 16px;
 }
 
-.message {
-    padding: 10px 14px;
-    border-radius: 8px;
-    line-height: 1.4;
-    font-size: 14px;
-    max-width: 85%;
-}
-
-.bot-msg {
-    background-color: #e2e8f0;
-    color: #1a365d;
-    align-self: flex-start;
-}
-
-.user-msg {
-    background-color: #1a365d;
-    color: #ffffff;
-    align-self: flex-end;
-}
-
-#chat-form {
+.chat-input-area {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 }
 
-#user-input {
+.chat-input-area input {
     flex: 1;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    color: #f8fafc;
+    padding: 12px 16px;
+    border-radius: 8px;
     outline: none;
+    font-size: 0.95rem;
 }
 
-#chat-form button {
-    padding: 12px 20px;
-    background-color: #1a365d;
-    color: #e5a93c;
+.chat-input-area input:focus {
+    border-color: #38bdf8;
+}
+
+.btn {
+    background-color: #38bdf8;
+    color: #0f172a;
     border: none;
-    border-radius: 6px;
-    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-#chat-form button:hover {
-    background-color: #0f2342;
+.btn:hover {
+    background-color: #7dd3fc;
+}
+
+/* Stilizare mesaje de chat */
+.message {
+    max-width: 75%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.message.user {
+    align-self: flex-end;
+    background-color: #38bdf8;
+    color: #0f172a;
+    border-bottom-right-radius: 2px;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background-color: #334155;
+    color: #f8fafc;
+    border-bottom-left-radius: 2px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #64748b;
+    font-size: 0.85rem;
+    border-top: 1px solid #334155;
 }
