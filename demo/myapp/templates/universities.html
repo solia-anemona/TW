@@ -1,22 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facultăți - Comunitatea TW</title>
-    <link rel="stylesheet" href="../CSS/universities_style.css">
-    <link rel="stylesheet" href="../CSS/cursor.css">
+    <link rel="stylesheet" href="{% static 'universities_style.css' %}">
+    <link rel="stylesheet" href="{% static 'cursor.css' %}">
 </head>
 <body>
     <header>
         <div class="container">
             <h1>Comunitatea de Tehnologii Web 2025</h1>
             <nav>
-                <a href="home.html">Acasă</a>
-                <a href="galerie.html">Galerie</a>
-                <a href="universities.html">Facultăți</a>
-                <a href="chatbot.html">ChatBot</a>
-                <a href="login.html">Logout</a>
+                <a href="{% url 'home' %}">Acasă</a>
+                <a href="{% url 'galerie' %}">Galerie</a>
+                <a href="{% url 'universities' %}">Facultăți</a>
+                <a href="{% url 'chatbot' %}">ChatBot</a>
+                <a href="{% url 'login' %}">Logout</a>
             </nav>
         </div>
     </header>
@@ -34,7 +35,7 @@
         </div>
     </footer>
 
-    <script src="../JS/universities_js.js"></script>
-    <script src="../JS/cursor.js"></script>
+    <script src="{% static 'universities_js.js' %}"></script>
+    <script src="{% static 'cursor.js' %}"></script>
 </body>
 </html>

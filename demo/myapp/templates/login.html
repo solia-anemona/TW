@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autentificare - Comunitatea TW</title>
+    <link rel="stylesheet" href="{% static 'login_style.css' %}">
+    <link rel="stylesheet" href="{% static 'cursor.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Autentificare</h2>
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Utilizator" required>
+            <input type="password" id="login-password" placeholder="Parolă" required>
+            <button type="submit">Conectează-te</button>
+        </form>
+        <p>Nu ai cont? <a href="{% url 'register' %}">Înregistrează-te</a></p>
+    </div>
+
+    <script src="{% static 'login_js.js' %}"></script>
+    <script src="{% static 'cursor.js' %}"></script>
+</body>
+</html>

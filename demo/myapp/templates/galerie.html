@@ -1,22 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galerie Foto - Comunitatea TW</title>
-    <link rel="stylesheet" href="../CSS/galerie.css">
-    <link rel="stylesheet" href="../CSS/cursor.css">
+    <link rel="stylesheet" href="{% static 'galerie.css' %}">
+    <link rel="stylesheet" href="{% static 'cursor.css' %}">
 </head>
 <body>
     <header>
         <div class="container nav-container">
             <h1>Comunitatea TW 2025</h1>
             <nav>
-                <a href="home.html">Acasă</a>
-                <a href="galerie.html" class="active">Galerie</a>
-                <a href="universities.html">Facultăți</a>
-                <a href="chatbot.html">ChatBot</a>
-                <a href="login.html">Logout</a>
+                <a href="{% url 'home' %}">Acasă</a>
+                <a href="{% url 'galerie' %}" class="active">Galerie</a>
+                <a href="{% url 'universities' %}">Facultăți</a>
+                <a href="{% url 'chatbot' %}">ChatBot</a>
+                <a href="{% url 'login' %}">Logout</a>
             </nav>
         </div>
     </header>
@@ -25,7 +26,7 @@
         <div class="carousel-card">
             <h2>Galerie Foto Interactivă</h2>
             <div class="carousel-view">
-                <img id="carousel-image" src="../MEDIA/logo.png" alt="Galerie Foto">
+                <img id="carousel-image" src="{% static 'logo.png' %}" alt="Galerie Foto">
             </div>
             <div class="controls">
                 <button id="prev-btn" class="btn">❮ Înapoi</button>
@@ -40,7 +41,7 @@
         </div>
     </footer>
 
-    <script src="../JS/cursor.js"></script>
-    <script src="../JS/galerie.js"></script>
+    <script src="{% static 'cursor.js' %}"></script>
+    <script src="{% static 'galerie.js' %}"></script>
 </body>
 </html>

@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Înregistrare - Comunitatea TW</title>
-    <link rel="stylesheet" href="../CSS/register_style.css">
-    <link rel="stylesheet" href="../CSS/cursor.css">
+    <link rel="stylesheet" href="{% static 'register_style.css' %}">
+    <link rel="stylesheet" href="{% static 'cursor.css' %}">
 </head>
 <body>
     <div class="register-container">
@@ -16,9 +17,9 @@
             <input type="password" id="reg-password" placeholder="Parolă" required>
             <button type="submit">Înregistrează-te</button>
         </form>
-        <p>Ai deja cont? <a href="login.html">Conectează-te</a></p>
+        <p>Ai deja cont? <a href="{% url 'login' %}">Conectează-te</a></p>
     </div>
 
-    <script src="../JS/cursor.js"></script>
+    <script src="{% static 'cursor.js' %}"></script>
 </body>
 </html>
